@@ -18,6 +18,11 @@ jobs:
     runs-on: ${{ matrix.platform }}
 
     steps:
+    - name: Harden Runner
+      uses: step-security/harden-runner@rc
+      with:
+        egress-policy: audit # TODO: change to 'egress-policy: block' after couple of runs
+
     - uses: actions/checkout@v1
     - name: Setup .NET 5
       uses: actions/setup-dotnet@v1
